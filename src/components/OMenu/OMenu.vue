@@ -12,7 +12,7 @@
       <template slot="title">
         <span>draggable</span>
       </template>
-      <el-menu-item index="/demo/draggable/drag" :route="{path:'/demo/draggable/drag'}">drag</el-menu-item>
+      <el-menu-item index="/demo/draggable/drag" :route="{path:'/demo/draggable/drag'}">可视化demo</el-menu-item>
     </el-submenu>
 
     <el-submenu index="gui">
