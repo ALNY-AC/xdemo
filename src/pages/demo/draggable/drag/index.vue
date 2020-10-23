@@ -60,7 +60,6 @@
                 <option :value="opt" :key="opt" v-for="opt in prop.valueOption">{{opt}}</option>
               </select>
             </div>-->
-
             <input type="text" v-model="activeNode[key]" v-if="prop.type==String" />
             <input type="checkbox" v-model="activeNode[key]" v-if="prop.type==Boolean" />
             <input type="number" v-model="activeNode[key]" v-if="prop.type==Number" />
