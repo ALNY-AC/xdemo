@@ -79,24 +79,21 @@ export default {
 
 
 
-            let test=[[]];
-            props.forEach(propsRes=>{
+            let test = [[]];
+            props.forEach(propsRes => {
                 let ret = [];
-                test.forEach( testRes => {
-                    console.log("85:",testRes)
+                test.forEach(testRes => {
                     propsRes.forEach((b) => {
-                        console.log("b:",b);
                         ret.push(testRes.concat([b]));
                     });
                 });
-                console.log('ret:',ret)
-                test=ret;
+                test = ret;
             })
 
 
 
             console.log(test)
-            
+
 
 
             let skus = test.map(el => {

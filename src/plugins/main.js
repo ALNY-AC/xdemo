@@ -19,7 +19,7 @@ Vue.use(VueAreaLinkage)
 Vue.use(VCharts)
 
 Vue.use(ElementUI, {
-    size: 'small'
+    size: 'mini'
 });
 
 import '@/styles/styles.scss';
@@ -28,4 +28,15 @@ Vue.prototype.$Url = url;
 Vue.prototype.$http = Http;
 
 
+import VueDraggableResizable from 'vue-draggable-resizable'
+// optionally import default styles
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
+
+
+import vdr from 'vue-draggable-resizable-gorkys'
+
+// 导入默认样式
+import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
+Vue.component('vdr', vdr)

@@ -8,6 +8,13 @@
       <el-menu-item index="/demo/goods/edit" :route="{path:'/demo/goods/edit'}">Goods Edit</el-menu-item>
     </el-submenu>
 
+    <el-submenu index="draggable">
+      <template slot="title">
+        <span>draggable</span>
+      </template>
+      <el-menu-item index="/demo/draggable/drag" :route="{path:'/demo/draggable/drag'}">drag</el-menu-item>
+    </el-submenu>
+
     <el-submenu index="gui">
       <template slot="title">
         <span>gui</span>
