@@ -19,13 +19,13 @@ export default class Echart extends Node {
     activeType = 'line';
 
     init() {
+        this.width = 300;
+        this.height = 300;
         this.chart = echarts.init(this.$el);
         this.initChart();
     }
     initChart() {
         let option = {};
-
-
         if (this.activeType == 'line') {
             option = {
                 xAxis: {
@@ -119,7 +119,6 @@ export default class Echart extends Node {
 
     update() {
         if (this.type != this.activeType) {
-            console.warn('换！');
             this.activeType = this.type;
             this.initChart();
         }

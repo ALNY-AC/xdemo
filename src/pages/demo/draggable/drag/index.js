@@ -2,6 +2,7 @@ import echarts from 'echarts'
 import Echart from './script/Echart'
 import Image from './script/Image'
 import Text from './script/Text'
+import Node from './script/Node'
 
 export default {
     name: 'drag',
@@ -83,6 +84,7 @@ export default {
         async add(item) {
             try {
                 let node = new this.compClass[item.class]();
+
                 Object.keys(node.properties).forEach(k => {
                     node[k] = node.properties[k].default;
                 });
@@ -92,10 +94,8 @@ export default {
                 this.nodes.push(node);
                 await this.$nextTick();
                 node.$el = document.getElementById(node.id);
-                console.warn(node);
-                node.dragNode = this.$refs['drag_' + node.id];
+                node.dragNode = this.$refs['drag_' + node.id][0];
                 node.init();
-                console.warn(this.nodes);
             } catch (error) {
                 console.error(error);
             }

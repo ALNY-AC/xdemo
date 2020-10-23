@@ -4,8 +4,10 @@ export default class Node {
     $el = "";
     dragNode = null;
     comp = '';
-    properties = {};
 
+    constructor() {
+
+    }
     init() { }
     update() { }
     destroyed() { }
