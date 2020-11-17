@@ -7,75 +7,51 @@
           <el-checkbox v-if="item.type=='checkbox'" :label="opt.value"></el-checkbox>
         </div>
         <div class="opt-label">
-          <div @click="activeEditIndex=i" v-if="activeEditIndex!=i">{{opt.label}}</div>
-          <el-input
-            v-if="activeEditIndex==i"
-            v-model="opt.label"
-            :ref="`input-${i}`"
-            @blur="activeEditIndex=-1"
-            @keydown.enter.native.stop="activeEditIndex=-1"
-          ></el-input>
+          <p-edit-input v-model="opt.label"></p-edit-input>
         </div>
-        <div class="opt-tool">
+        <div class="tool-list">
+          <div class="tool-item">
+            <p-edit-input v-model.number="opt.score">
+              <span class="tool-label">(分值：{{opt.score}})</span>
+            </p-edit-input>
+          </div>
           <div class="tool-item">
             <el-checkbox v-model="opt.required">
               <span class="tool-label">必选</span>
             </el-checkbox>
           </div>
           <div class="tool-item">
-            <el-button
-              type="text"
-              v-if="activeEditValue!=i"
-              @click="activeEditValue=i"
-            >(分值：{{opt.score}})</el-button>
-          </div>
-          <div class="tool-item">
-            <el-input
-              v-if="activeEditValue==i"
-              v-model.number="opt.score"
-              type="number"
-              :ref="`input-value-${i}`"
-              @blur="activeEditValue=-1"
-              @keydown.enter.native.stop="activeEditValue=-1"
-            ></el-input>
-          </div>
-          <div class="tool-item">
-            <el-button type="text" icon="el-icon-close" @click="item.options.splice(i,1)"></el-button>
+            <span class="tool-label" @click="item.options.splice(i,1)">
+              <i class="el-icon-close"></i>
+            </span>
           </div>
         </div>
       </div>
       <div class="opt-item" v-if="item.isOther">
         <div class="opt-input"></div>
         <div class="opt-label">
-          <div class="other-title">其他：</div>
-          <!-- <el-input></el-input> -->
-          <div class="other-line"></div>
+          <div class="other-box">
+            <div class="other-title">其他：</div>
+            <div class="other-line"></div>
+          </div>
         </div>
-        <div class="opt-tool">
+        <div class="tool-list">
+          <div class="tool-item">
+            <p-edit-input v-model.number="item.otherScore">
+              <span class="tool-label">(分值：{{item.otherScore}})</span>
+            </p-edit-input>
+          </div>
           <div class="tool-item">
             <el-checkbox v-model="item.requiredOther">
               <span class="tool-label">必填</span>
             </el-checkbox>
           </div>
           <div class="tool-item">
-            <el-button
-              type="text"
-              v-if="activeEditValue!=-2"
-              @click="activeEditValue=-2"
-            >(分值：{{item.otherScore}})</el-button>
-          </div>
-          <div class="tool-item">
-            <el-input
-              v-if="activeEditValue==-2"
-              v-model.number="item.otherScore"
-              type="number"
-              :ref="`input-value-${-2}`"
-              @blur="activeEditValue=-1"
-              @keydown.enter.native.stop="activeEditValue=-1"
-            ></el-input>
-          </div>
-          <div class="tool-item">
-            <el-button type="text" icon="el-icon-close" @click="item.isOther=false"></el-button>
+            <div class="tool-item">
+              <span class="tool-label" @click="item.isOther=false">
+                <i class="el-icon-close"></i>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -131,25 +107,41 @@ export default {
 .opt-list {
   padding: 10px 0;
 }
+.tool-list {
+  display: flex;
+  align-items: center;
+  .tool-item {
+    cursor: pointer;
+    padding: 0 4px;
+    .tool-label {
+      font-size: 12px;
+      color: #666;
+    }
+  }
+}
 .opt-item {
   display: flex;
   align-items: center;
   height: 30px;
   font-size: 14px;
   color: #333;
-  padding: 5px 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
   border-radius: 4px;
-
-  .tool-label {
-    font-size: 12px;
-    color: #777;
-  }
+  // background-color: #ff0000;
 
   .opt-input {
     width: 30px;
+    // background-color: #0000ff;
   }
 
   .opt-label {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .other-box {
     flex: 1;
     display: flex;
     align-items: center;
@@ -158,7 +150,7 @@ export default {
       font-size: 12px;
       white-space: nowrap;
       color: #666;
-      margin-right: 10px;
+      margin-right: 5px;
     }
     .other-line {
       border-bottom: solid 1px #ddd;
@@ -167,13 +159,6 @@ export default {
     }
   }
 
-  .opt-tool {
-    display: flex;
-    align-items: center;
-    .tool-item {
-      padding: 0 5px;
-    }
-  }
   &:hover {
     .tool-label {
     }

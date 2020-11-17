@@ -38,8 +38,8 @@ export default {
     /**
   * 获得单个选项
   */
-    getOptionItem() {
-        return { label: '选项', key: '', value: '', required: false, score: 0, }
+    getOptionItem(label = '选项') {
+        return { label: label, key: '', value: '', required: false, score: 0, }
     },
 
     /**
