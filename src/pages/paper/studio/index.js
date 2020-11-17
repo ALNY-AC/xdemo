@@ -1,24 +1,35 @@
+import config from './config'
+
 export default {
-    name: 'index',
-    title: '首页',
+    name: 'studio',
     data() {
         return {
+            config: null,
+            tools: [
+                { label: 'radio', type: 'radio' },
+                { label: 'checkbox', type: 'checkbox' },
+                { label: 'table', type: 'table' },
+                { label: 'fill', type: 'fill' },
+                { label: 'textarea', type: 'textarea' },
+                { label: 'input', type: 'input' },
+            ],
         };
     },
     methods: {
         // 用于初始化一些数据
-        async init() {
-            // this.update();
-            this.show();
-        },
-        show() {
-            // this.$refs['select-child'].show();
-            // this.$refs['select-contact'].show();
+        init() {
+            this.update();
         },
         // 用于更新一些数据
         async update() {
-
+            this.config = config.getConfig();
+            // const res = await this.$http.post('', {});
+            this.addSubject(this.tools[0]);
         },
+        addSubject(item) {
+            let subject = config.getSubject(item.type);
+            this.config.subjects.push(subject);
+        }
     },
     // 计算属性
     computed: {},

@@ -1,0 +1,15 @@
+@import "@/styles/variable.scss";
+
+#studio {
+    padding: $page-padding;
+
+    .form-panel {
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 20px;
+        box-shadow: 0 1px 5px 0 #ddd;
+        margin: 20px 0;
+    }
+}
+
+#studio /deep/ {}

@@ -1,5 +1,7 @@
 <template>
   <el-menu router class="o-menu" background-color="#fff" text-color="#333">
+    <el-menu-item index="/" :route="{path:'/'}">首页</el-menu-item>
+
     <el-submenu index="demo">
       <template slot="title">
         <span>demo</span>
@@ -22,6 +24,14 @@
       <el-menu-item index="/gui/cube" :route="{path:'/gui/cube'}">cube</el-menu-item>
       <el-menu-item index="/gui/form" :route="{path:'/gui/form'}">form</el-menu-item>
       <el-menu-item index="/gui/oa/node" :route="{path:'/gui/oa/node'}">oa node</el-menu-item>
+    </el-submenu>
+
+    <el-submenu index="paper">
+      <template slot="title">
+        <span>paper</span>
+      </template>
+      <el-menu-item index="/paper" :route="{path:'/paper'}">paper</el-menu-item>
+      <el-menu-item index="/paper/studio" :route="{path:'/paper/studio'}">studio</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>

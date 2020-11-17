@@ -12,6 +12,7 @@ export default class Echart extends Node {
             valueOption: [
                 'pie',
                 'line',
+
             ],
             displayName: '类型',
         },
@@ -44,28 +45,8 @@ export default class Echart extends Node {
         if (this.activeType == 'pie') {
             option = {
                 backgroundColor: '#2c343c',
-
-                title: {
-                    text: 'Customized Pie',
-                    left: 'center',
-                    top: 20,
-                    textStyle: {
-                        color: '#ccc'
-                    }
-                },
-
-                tooltip: {
-                    trigger: 'item',
-                    formatter: '{a} <br/>{b} : {c} ({d}%)'
-                },
-
                 visualMap: {
                     show: false,
-                    min: 80,
-                    max: 600,
-                    inRange: {
-                        colorLightness: [0, 1]
-                    }
                 },
                 series: [
                     {
