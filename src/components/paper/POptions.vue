@@ -4,8 +4,13 @@
       <div v-for="(opt,i) in item.options" :key="i" class="opt-item">
         <div class="opt-item-body">
           <div class="opt-input">
-            <el-radio v-if="item.type=='radio'" :label="opt.value"></el-radio>
-            <el-checkbox v-if="item.type=='checkbox'" :label="opt.value"></el-checkbox>
+            <!-- <el-radio v-if="item.type=='radio'" :label="opt.value"></el-radio> -->
+            <!-- <el-checkbox v-if="item.type=='checkbox'" :label="opt.value"></el-checkbox> -->
+            <i v-if="item.type=='select'" class="icon fa fa-caret-square-o-down"></i>
+            <i v-if="item.type=='checkbox'" class="icon fa fa-square-o"></i>
+            <i v-if="item.type=='radio'" class="icon fa fa-circle-o"></i>
+            <i v-if="item.type=='input'" class="icon fa fa-edit"></i>
+            <i v-if="item.type=='textarea'" class="icon fa fa-edit"></i>
           </div>
           <div class="opt-label">
             <div class="num" v-if="item.options.length>1">{{i+1}}.</div>
@@ -19,7 +24,7 @@
             </div>
             <div class="tool-item">
               <el-checkbox v-model="opt.required">
-                <span class="tool-label">必选</span>
+                <span class="tool-label">必填</span>
               </el-checkbox>
             </div>
             <div class="tool-item">
@@ -153,6 +158,10 @@ export default {
 
   .opt-input {
     width: 30px;
+    .icon {
+      color: #999;
+      cursor: not-allowed;
+    }
   }
 
   .opt-label {

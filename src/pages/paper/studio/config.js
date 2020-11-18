@@ -19,6 +19,7 @@ export default {
      * 填空 fill
      * 文本域 textarea
      * 文本框 input
+     * 下拉选项框 select
      * 
      */
     getSubject(type) {
@@ -77,6 +78,14 @@ export default {
         return {
             // 基本配置
             ...this.getBaseData('checkbox', '复选框'),
+            // 选项
+            options: this.getOption(),
+        };
+    },
+    get_select() {
+        return {
+            // 基本配置
+            ...this.getBaseData('select', '下拉选项框'),
             // 选项
             options: this.getOption(),
         };

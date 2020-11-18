@@ -4,6 +4,7 @@
     <template v-if="item">
       <div class="p-form-item-header">
         <div class="title">
+          <div class="required-icon" v-if="item.required">*</div>
           <p-edit-input v-model="item.title"></p-edit-input>
         </div>
         <div class="tool-list">
@@ -27,6 +28,9 @@
             <p-options :item="item"></p-options>
           </template>
           <template v-if="item.type=='checkbox'">
+            <p-options :item="item"></p-options>
+          </template>
+          <template v-if="item.type=='select'">
             <p-options :item="item"></p-options>
           </template>
           <template v-if="item.type=='fill'"></template>
@@ -126,8 +130,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/styles/variable.scss";
+
 .p-form-item {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   .p-form-item-header {
     min-height: 30px;
     border-bottom: 1px solid #ddd;
@@ -135,6 +141,14 @@ export default {
     display: flex;
     .title {
       flex: 1;
+      position: relative;
+      .required-icon {
+        position: absolute;
+        color: #e95555;
+        left: -11px;
+        // text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.3);
+        font-weight: bold;
+      }
     }
     .tool-list {
       display: flex;

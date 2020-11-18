@@ -3,6 +3,8 @@
 #studio {
     padding: $page-padding;
 
+    $max-width: 900px;
+
     .form-panel {
         background-color: #ffffff;
         border-radius: 4px;
@@ -10,7 +12,7 @@
         box-shadow: 0 1px 5px 0 #ddd;
         margin: 20px auto;
         box-sizing: border-box;
-        max-width: 1000px;
+        max-width: $max-width;
     }
 
     pre {
@@ -19,7 +21,7 @@
         padding: 10px;
         margin: 20px auto;
         box-sizing: border-box;
-        max-width: 1000px;
+        max-width: $max-width;
         box-shadow: 0 1px 5px 0 #ddd;
         background-color: #ffffff;
     }

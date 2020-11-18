@@ -8,6 +8,7 @@ export default {
             tools: [
                 { label: 'radio', type: 'radio' },
                 { label: 'checkbox', type: 'checkbox' },
+                { label: 'select', type: 'select' },
                 { label: 'table', type: 'table' },
                 { label: 'fill', type: 'fill' },
                 { label: 'textarea', type: 'textarea' },
