@@ -8,7 +8,7 @@
         </div>
         <div class="tool-list">
           <div class="tool-item">
-            <p-edit-input v-model.number="item.score">
+            <p-edit-input type="number" v-model.number="item.score">
               <span class="tool-label text-blue">(分值：{{item.score}})</span>
             </p-edit-input>
           </div>
@@ -30,8 +30,12 @@
             <p-options :item="item"></p-options>
           </template>
           <template v-if="item.type=='fill'"></template>
-          <template v-if="item.type=='textarea'"></template>
-          <template v-if="item.type=='input'"></template>
+          <template v-if="item.type=='textarea'">
+            <p-options :item="item"></p-options>
+          </template>
+          <template v-if="item.type=='input'">
+            <p-options :item="item"></p-options>
+          </template>
         </div>
       </div>
       <div class="p-form-item-footer">
@@ -125,7 +129,7 @@ export default {
 .p-form-item {
   margin-bottom: 30px;
   .p-form-item-header {
-    height: 30px;
+    min-height: 30px;
     border-bottom: 1px solid #ddd;
     margin: 10px 0;
     display: flex;

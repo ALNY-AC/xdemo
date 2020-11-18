@@ -28,10 +28,10 @@ export default {
     /**
      * 获得选项
      */
-    getOption() {
+    getOption(label) {
         return [
             // 标签、key值、选项值,key和value2选1
-            this.getOptionItem()
+            this.getOptionItem(label)
             // { label: '', key: '', value: '' },
         ];
     },
@@ -108,11 +108,12 @@ export default {
         };
     },
     get_input() {
+
         return {
             // 基本配置
             ...this.getBaseData('input', '文本框'),
             // 选项
-            options: this.getOption(),
+            options: this.getOption('问题项'),
         };
     },
 }

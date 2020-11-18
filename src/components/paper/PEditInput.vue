@@ -1,14 +1,20 @@
 <template>
   <div class="p-edit-input">
     <div @click="isEdit=true" v-if="!isEdit">
-      <slot>{{value}}</slot>
+      <slot>
+        <div v-html="showContent"></div>
+      </slot>
     </div>
+    <!-- @keydown.enter.native.stop="isEdit=false" -->
+
     <slot name="input">
       <el-input
         ref="input"
+        :type="type"
+        rows="1"
+        autosize
         v-if="isEdit"
         @blur="isEdit=false"
-        @keydown.enter.native.stop="isEdit=false"
         v-model="model"
       ></el-input>
     </slot>
@@ -21,6 +27,19 @@ export default {
     value: {
       type: [String, Number],
       default: '',
+    },
+    type: {
+      type: String,
+      default: 'textarea'
+    }
+  },
+  computed: {
+    showContent() {
+      if (this.type == 'textarea') {
+        return (this.value + '').replace(/[\r|\n]/gim, '<br/>');
+      } else {
+        return this.value;
+      }
     }
   },
   watch: {

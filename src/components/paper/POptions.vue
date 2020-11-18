@@ -2,29 +2,35 @@
   <div class="p-options">
     <div class="opt-list">
       <div v-for="(opt,i) in item.options" :key="i" class="opt-item">
-        <div class="opt-input">
-          <el-radio v-if="item.type=='radio'" :label="opt.value"></el-radio>
-          <el-checkbox v-if="item.type=='checkbox'" :label="opt.value"></el-checkbox>
+        <div class="opt-item-body">
+          <div class="opt-input">
+            <el-radio v-if="item.type=='radio'" :label="opt.value"></el-radio>
+            <el-checkbox v-if="item.type=='checkbox'" :label="opt.value"></el-checkbox>
+          </div>
+          <div class="opt-label">
+            <div class="num" v-if="item.options.length>1">{{i+1}}.</div>
+            <p-edit-input v-model="opt.label"></p-edit-input>
+          </div>
+          <div class="tool-list">
+            <div class="tool-item">
+              <p-edit-input type="number" v-model.number="opt.score">
+                <span class="tool-label">(分值：{{opt.score}})</span>
+              </p-edit-input>
+            </div>
+            <div class="tool-item">
+              <el-checkbox v-model="opt.required">
+                <span class="tool-label">必选</span>
+              </el-checkbox>
+            </div>
+            <div class="tool-item">
+              <span class="tool-label" @click="item.options.splice(i,1)">
+                <i class="el-icon-close"></i>
+              </span>
+            </div>
+          </div>
         </div>
-        <div class="opt-label">
-          <p-edit-input v-model="opt.label"></p-edit-input>
-        </div>
-        <div class="tool-list">
-          <div class="tool-item">
-            <p-edit-input v-model.number="opt.score">
-              <span class="tool-label">(分值：{{opt.score}})</span>
-            </p-edit-input>
-          </div>
-          <div class="tool-item">
-            <el-checkbox v-model="opt.required">
-              <span class="tool-label">必选</span>
-            </el-checkbox>
-          </div>
-          <div class="tool-item">
-            <span class="tool-label" @click="item.options.splice(i,1)">
-              <i class="el-icon-close"></i>
-            </span>
-          </div>
+        <div class="opt-item-footer">
+          <div class="j-input" v-if="['input','textarea'].indexOf(item.type)>=0">填表人在这里填写</div>
         </div>
       </div>
       <div class="opt-item" v-if="item.isOther">
@@ -37,7 +43,7 @@
         </div>
         <div class="tool-list">
           <div class="tool-item">
-            <p-edit-input v-model.number="item.otherScore">
+            <p-edit-input type="number" v-model.number="item.otherScore">
               <span class="tool-label">(分值：{{item.otherScore}})</span>
             </p-edit-input>
           </div>
@@ -58,8 +64,10 @@
     </div>
     <div>
       <el-button type="default" @click="addOpt()" icon="el-icon-plus">添加选项</el-button>
-      <span style="color:#888;font-size:12px">或</span>
-      <el-button type="text" @click="item.isOther=true">添加「其他」</el-button>
+      <template v-if="!item.isOther">
+        <span style="color:#888;font-size:12px">或</span>
+        <el-button type="text" @click="item.isOther=true">添加「其他」</el-button>
+      </template>
     </div>
   </div>
 </template>
@@ -94,7 +102,13 @@ export default {
   mounted() { },
   methods: {
     addOpt() {
-      let opt = config.getOptionItem();
+      let map = {
+        radio: '选项',
+        checkbox: '选项',
+        input: '问题项',
+        textarea: '问题项',
+      };
+      let opt = config.getOptionItem(map[this.item.type]);
       this.item.options.push(opt);
     }
   },
@@ -109,7 +123,7 @@ export default {
 }
 .tool-list {
   display: flex;
-  align-items: center;
+  // align-items: center;
   .tool-item {
     cursor: pointer;
     padding: 0 4px;
@@ -120,32 +134,42 @@ export default {
   }
 }
 .opt-item {
-  display: flex;
-  align-items: center;
-  height: 30px;
-  font-size: 14px;
-  color: #333;
-  padding: 0 10px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  // background-color: #ff0000;
+  .opt-item-body {
+    display: flex;
+    height: 100%;
+    min-height: 30px;
+    font-size: 14px;
+    color: #333;
+    padding: 0 10px;
+    padding-bottom: 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  .opt-item-footer {
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
 
   .opt-input {
     width: 30px;
-    // background-color: #0000ff;
   }
 
   .opt-label {
     flex: 1;
     height: 100%;
     display: flex;
-    align-items: center;
+    // align-items: center;
+    .num {
+      margin-right: 3px;
+      color: #666;
+    }
   }
   .other-box {
     flex: 1;
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 30px;
     .other-title {
       font-size: 12px;
       white-space: nowrap;
@@ -166,5 +190,17 @@ export default {
       display: flex;
     }
   }
+}
+.j-input {
+  background-color: #f7f7f7;
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
+  cursor: not-allowed;
+  height: 35px;
+  font-size: 14px;
+  color: #999;
+  line-height: 35px;
+  padding: 0 15px;
+  margin-left: 30px;
 }
 </style>
