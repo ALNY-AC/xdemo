@@ -5,7 +5,7 @@
     </div>
     <div v-if="config" class="form-panel">
       <div class="form-list">
-        <div class="form-item" v-for="(item,i) in config.subjects" :key="i">
+        <div class="form-item" v-for="(item,i) in config.subjects" :key="item.id">
           <p-form-item :config="config" :index="i" :item="item"></p-form-item>
         </div>
       </div>

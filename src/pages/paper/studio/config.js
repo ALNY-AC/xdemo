@@ -1,6 +1,9 @@
 /**
  * 试卷的配置项
  */
+import Random from '../../../lib/tool/Random'
+const random = new Random();
+
 export default {
     getConfig() {
         return {
@@ -40,7 +43,7 @@ export default {
   * 获得单个选项
   */
     getOptionItem(label = '选项') {
-        return { label: label, key: '', value: '', required: false, score: 0, }
+        return { id: random.getRandom(32, 'opt_'), label: label, key: '', value: '', required: false, score: 0, }
     },
 
     /**
@@ -48,6 +51,7 @@ export default {
      */
     getBaseData(type, title = '') {
         return {
+            id: random.getRandom(32, 'subj'),
             type: type,
             // 字段题目对标题
             title: title,

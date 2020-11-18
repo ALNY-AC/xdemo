@@ -1,7 +1,7 @@
 <template>
   <div class="p-options">
     <div class="opt-list">
-      <div v-for="(opt,i) in item.options" :key="i" class="opt-item">
+      <div v-for="(opt,i) in item.options" :key="opt.id" class="opt-item">
         <div class="opt-item-body">
           <div class="opt-input">
             <!-- <el-radio v-if="item.type=='radio'" :label="opt.value"></el-radio> -->
@@ -39,29 +39,31 @@
         </div>
       </div>
       <div class="opt-item" v-if="item.isOther">
-        <div class="opt-input"></div>
-        <div class="opt-label">
-          <div class="other-box">
-            <div class="other-title">其他：</div>
-            <div class="other-line"></div>
+        <div class="opt-item-body">
+          <div class="opt-input"></div>
+          <div class="opt-label">
+            <div class="other-box">
+              <div class="other-title">其他：</div>
+              <div class="other-line"></div>
+            </div>
           </div>
-        </div>
-        <div class="tool-list">
-          <div class="tool-item">
-            <p-edit-input type="number" v-model.number="item.otherScore">
-              <span class="tool-label">(分值：{{item.otherScore}})</span>
-            </p-edit-input>
-          </div>
-          <div class="tool-item">
-            <el-checkbox v-model="item.requiredOther">
-              <span class="tool-label">必填</span>
-            </el-checkbox>
-          </div>
-          <div class="tool-item">
+          <div class="tool-list">
             <div class="tool-item">
-              <span class="tool-label" @click="item.isOther=false">
-                <i class="el-icon-close"></i>
-              </span>
+              <p-edit-input type="number" v-model.number="item.otherScore">
+                <span class="tool-label">(分值：{{item.otherScore}})</span>
+              </p-edit-input>
+            </div>
+            <div class="tool-item">
+              <el-checkbox v-model="item.requiredOther">
+                <span class="tool-label">必填</span>
+              </el-checkbox>
+            </div>
+            <div class="tool-item">
+              <div class="tool-item">
+                <span class="tool-label" @click="item.isOther=false">
+                  <i class="el-icon-close"></i>
+                </span>
+              </div>
             </div>
           </div>
         </div>
