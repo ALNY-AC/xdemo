@@ -2,13 +2,19 @@
   <div>
     <el-button @click="httpTest()">请求接口</el-button>
     <pre v-html="msg"></pre>
+
+    <hr />
+    <h3>地址选择框</h3>
+    <area-select :data="$pcaa" :level="2" type="code" v-model="selected"></area-select>
+    {{selected}}
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      msg: ''
+      msg: '',
+      selected: []
     }
   },
   methods: {

@@ -7,6 +7,7 @@
         <span>demo</span>
       </template>
       <el-menu-item index="/demo/table" :route="{path:'/demo/table'}">table</el-menu-item>
+      <el-menu-item index="/treeTable" :route="{path:'/treeTable'}">treeTable</el-menu-item>
       <el-menu-item index="/demo/goods/edit" :route="{path:'/demo/goods/edit'}">Goods Edit</el-menu-item>
     </el-submenu>
 
