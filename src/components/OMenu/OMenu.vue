@@ -2,6 +2,30 @@
   <el-menu router class="o-menu" background-color="#fff" text-color="#333">
     <el-menu-item index="/" :route="{path:'/'}">首页</el-menu-item>
 
+    <el-submenu index="shop">
+      <template slot="title">
+        <span>商城系统</span>
+      </template>
+      <el-menu-item index="/shop" :route="{path:'/shop'}">首页</el-menu-item>
+      <el-submenu index="goods">
+        <template slot="title">
+          <span>商品管理</span>
+        </template>
+        <el-menu-item index="/shop/prop/edit" :route="{path:'/shop/prop/edit'}">商品属性配置</el-menu-item>
+        <el-menu-item index="/shop/goods/edit" :route="{path:'/shop/goods/edit'}">新增商品</el-menu-item>
+        <el-menu-item index="/shop/goods/list" :route="{path:'/shop/goods/list'}">商品列表</el-menu-item>
+      </el-submenu>
+    </el-submenu>
+
+    <el-submenu index="activity">
+      <template slot="title">
+        <span>抽奖</span>
+      </template>
+      <el-menu-item index="/activity/luck" :route="{path:'/activity/luck'}">转盘配置</el-menu-item>
+      <el-menu-item index="/activity/prizedraw" :route="{path:'/activity/prizedraw'}">抽奖页面</el-menu-item>
+      <el-menu-item index="/shop" :route="{path:'/shop'}">得奖名单</el-menu-item>
+    </el-submenu>
+
     <el-submenu index="demo">
       <template slot="title">
         <span>demo</span>
@@ -9,6 +33,7 @@
       <el-menu-item index="/demo/table" :route="{path:'/demo/table'}">table</el-menu-item>
       <el-menu-item index="/treeTable" :route="{path:'/treeTable'}">treeTable</el-menu-item>
       <el-menu-item index="/demo/goods/edit" :route="{path:'/demo/goods/edit'}">Goods Edit</el-menu-item>
+      <el-menu-item index="/vdata/a" :route="{path:'/vdata/a'}">vdata</el-menu-item>
     </el-submenu>
 
     <el-submenu index="draggable">

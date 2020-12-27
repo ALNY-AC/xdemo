@@ -10,7 +10,7 @@ Vue.prototype.$getUrl = function (url = '') {
   if (url.indexOf('./') >= 0) return url;
   let _url;
   if (url.indexOf('http') == -1) {
-    _url = U.imageUrl + url;
+    _url = U.img + url;
   } else {
     _url = url;
   }

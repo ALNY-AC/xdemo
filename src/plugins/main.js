@@ -17,6 +17,16 @@ Vue.prototype.$pcaa = pcaa;//绑定地址数据
 Vue.use(VueAreaLinkage)//注册地址组件
 
 
+
+import Vant from 'vant';
+// import '@/styles/vant.scss';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
+
+
+
+
 import VCharts from 'v-charts'
 
 Vue.use(VCharts)
