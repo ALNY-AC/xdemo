@@ -36,6 +36,13 @@
       <el-menu-item index="/vdata/a" :route="{path:'/vdata/a'}">vdata</el-menu-item>
     </el-submenu>
 
+    <el-submenu index="echarts">
+      <template slot="title">
+        <span>地图</span>
+      </template>
+      <el-menu-item index="/echarts/map" :route="{path:'/echarts/map'}">map</el-menu-item>
+    </el-submenu>
+
     <el-submenu index="draggable">
       <template slot="title">
         <span>draggable</span>

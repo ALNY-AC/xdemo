@@ -4,6 +4,18 @@
     <el-input type="textarea" v-model="form"></el-input>
     <el-button @click="httpTest()">请求接口</el-button>
     <pre v-html="msg"></pre>
+    <el-upload
+      action="/"
+      :before-upload="beforeUpload"
+      :before-remove="beforeRemove"
+      accept=".jpg, .png, .rar, .zip, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .txt, .mp3, .wma, .avi, .rm, .rmvb, .flv, .mpg, .mov, .mkv, .mp4"
+    >
+      <el-button icon="el-icon-upload" size="small">点击上传</el-button>
+      <div
+        slot="tip"
+        class="el-upload__tip"
+      >只能上传jpg、png、rar、zip、doc、docx、xls、xlsx、ppt、pptx、pdf、txt、mp3、wma、avi、rm、rmvb、flv、mpg、mov、mkv、mp4文件，且不超过1G</div>
+    </el-upload>
     <el-button @click="鼠标函数()">防抖</el-button>
     <el-select
       v-model="model"
@@ -14,6 +26,7 @@
     >
       <el-option v-for="item in 10" :key="item" :label="item" :value="item"></el-option>
     </el-select>
+    {{model}}
     <hr />
     <el-dropdown trigger="click">
       <el-button type="primary">
@@ -37,6 +50,7 @@ export default {
     return {
       msg: '',
       form: '{test:1}',
+      model: '',
       selected: [],
       info: test,
       // 记录防抖线程变量
@@ -50,7 +64,32 @@ export default {
     this.httpTest();
   },
   methods: {
-
+    beforeRemove(file, fileList) {
+      let map = ['rar', 'zip', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'txt', 'mp3', 'wma', 'avi', 'rm', 'rmvb', 'flv', 'mpg', 'mov', 'mkv', 'mp4'];
+      let name = file.name.split('.')[1];
+      if (map.indexOf(name) >= 0) {
+        // 如果是正常类型，就提示
+        return this.$confirm(`确定移除 ${file.name}？`);
+      } else {
+        // 如果是非法类型，就不提示，直接被删掉
+        return true;
+      }
+    },
+    /**
+     * 上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。
+     */
+    beforeUpload(file) {
+      let map = ['rar', 'zip', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'txt', 'mp3', 'wma', 'avi', 'rm', 'rmvb', 'flv', 'mpg', 'mov', 'mkv', 'mp4'];
+      let name = file.name.split('.')[1];
+      if (map.indexOf(name) >= 0) {
+        //如果后缀名存在在map中，则返回true，让上传程序正常上传
+        return true
+      } else {
+        //如果后缀名存在在map中，则返回false，终止上传
+        this.$message.warning(`不允许上传.${name}类型的文件！`);
+        return false;
+      }
+    },
     // 鼠标事件可以调用这个函数，或者直接调用防抖函数也行
     鼠标函数() {
       this.防抖函数();
