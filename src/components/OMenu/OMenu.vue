@@ -30,6 +30,7 @@
             <template slot="title">
                 <span>绘图</span>
             </template>
+            <el-menu-item index="/canvas/water" :route="{path:'/canvas/water'}">水波纹</el-menu-item>
             <el-menu-item index="/canvas/luck" :route="{path:'/canvas/konva'}">konva</el-menu-item>
             <el-menu-item index="/canvas/luck" :route="{path:'/canvas/fabric'}">fabric</el-menu-item>
         </el-submenu>
@@ -40,6 +41,7 @@
             </template>
             <el-menu-item index="/demo/table" :route="{path:'/demo/table'}">table</el-menu-item>
             <el-menu-item index="/treeTable" :route="{path:'/treeTable'}">treeTable</el-menu-item>
+            <el-menu-item index="/game/life" :route="{path:'/game/life'}">生命游戏</el-menu-item>
             <el-menu-item index="/demo/goods/edit" :route="{path:'/demo/goods/edit'}">Goods Edit</el-menu-item>
         </el-submenu>
 
